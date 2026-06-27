@@ -1,0 +1,120 @@
+@import "tailwindcss";
+
+:root {
+  /* Light theme — warm cork board / paper */
+  --bg: #FAF6EE;
+  --bg-soft: #F1EADA;
+  --surface: #FFFEFA;
+  --surface-2: #EFE6D2;
+  --ink: #2B2A28;
+  --ink-soft: #6B6357;
+  --border: #E2D5B8;
+  --accent: #D9703C;
+  --accent-ink: #FFFEFA;
+  --accent-soft: #F3DCC9;
+  --pine: #3C6E5E;
+  --pine-soft: #DCE9E2;
+  --shadow: rgba(43, 36, 20, 0.12);
+}
+
+.dark {
+  /* Dark theme — espresso & lamp light */
+  --bg: #1E1B16;
+  --bg-soft: #262220;
+  --surface: #28231D;
+  --surface-2: #322B23;
+  --ink: #F2E9D8;
+  --ink-soft: #B3A793;
+  --border: #423A2E;
+  --accent: #E2935E;
+  --accent-ink: #241405;
+  --accent-soft: #4A3422;
+  --pine: #6FAB97;
+  --pine-soft: #2A3B34;
+  --shadow: rgba(0, 0, 0, 0.45);
+}
+
+@theme inline {
+  --color-background: var(--bg);
+  --color-foreground: var(--ink);
+  --font-sans: var(--font-body);
+  --font-display: var(--font-display);
+}
+
+:root {
+  --font-display: "Segoe UI Rounded", "SF Pro Rounded", "Baloo 2", Verdana, ui-rounded, system-ui, sans-serif;
+  --font-body: "Segoe UI", "SF Pro Text", system-ui, -apple-system, sans-serif;
+}
+
+* {
+  border-color: var(--border);
+}
+
+html, body {
+  background: var(--bg);
+  color: var(--ink);
+}
+
+body {
+  font-family: var(--font-body), sans-serif;
+  overflow-x: hidden;
+}
+
+.font-display {
+  font-family: var(--font-display), sans-serif;
+}
+
+/* Hand-cut paper notch, used sparingly on the one signature card per screen */
+.notch-corner {
+  clip-path: polygon(
+    0 14px, 14px 0,
+    calc(100% - 14px) 0, 100% 14px,
+    100% calc(100% - 14px), calc(100% - 14px) 100%,
+    14px 100%, 0 calc(100% - 14px)
+  );
+}
+
+@keyframes gentle-pop {
+  0% { transform: scale(0.92); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+.animate-gentle-pop {
+  animation: gentle-pop 0.25s ease-out;
+}
+
+@keyframes soft-bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+.animate-soft-bob {
+  animation: soft-bob 2.4s ease-in-out infinite;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.animate-fade-in {
+  animation: fade-in 0.4s ease-out;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: var(--ink-soft);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-gentle-pop, .animate-soft-bob, .animate-fade-in {
+    animation: none;
+  }
+}
+
